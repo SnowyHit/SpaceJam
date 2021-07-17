@@ -6,24 +6,16 @@ public class PlayerController : MonoBehaviour
 {
     private ColorController colorController;
     private Rigidbody2D rb;
+    private float normalizer=-200f;
+    Vector2 direc2;
     private string direction;
+    GameObject asteroidPrefab;
+    public float forceMod;
     [SerializeField]private float defaultForce=0f;
     [SerializeField]private float maxForce=400f;
     private float force;
-    public float Force{
-      get{
-      return force;
-      }
-      set
-      {
-      force=value;
-      }
-    }
+    public float Force{get{return force;}set{force=value;}}
 
-
-    GameObject asteroidPrefab;
-    public float AsteroidPool;
-    private Queue<GameObject> asteroidPool;
 
     private void Awake()
     {
@@ -33,7 +25,6 @@ public class PlayerController : MonoBehaviour
       SwipeDetector.OnSwipe += SwipeDetector_OnSwipe;
       StartCoroutine(SlowCoroutine());
     }
-
 
     void Update()
     {
@@ -47,47 +38,52 @@ public class PlayerController : MonoBehaviour
         if(colorController.colors.Peek()==Color.red)
         {
           colorController.Combo+=1;
-          force+=10*colorController.Combo;
+          force+= forceMod*colorController.Combo;
         }
         else
         {
           force=defaultForce;
           colorController.Combo=0;
         }
-
+      }
+      if(direction!=null){
+        direction=null;
+        rb.AddForce((direc2/normalizer)*force);
       }
 
 
-      
 
 
-      if(direction == "Right")
-      {
-        direction = null;
-        rb.AddForce(Vector2.right * force);
-
-      }
-      if(direction == "Left")
-      {
-        direction = null;
-        rb.AddForce(Vector2.left * force);
-      }
-      if(direction == "Up")
-      {
-        direction = null;
-        rb.AddForce(Vector2.up * force);
-      }
-      if(direction == "Down")
-      {
-        direction = null;
-        rb.AddForce(Vector2.down * force);
-      }
+      // if(direction == "Right")
+      // {
+      //   direction = null;
+      //   rb.AddForce(Vector2.right * force);
+      //
+      // }
+      // if(direction == "Left")
+      // {
+      //   direction = null;
+      //   rb.AddForce(Vector2.left * force);
+      // }
+      // if(direction == "Up")
+      // {
+      //   direction = null;
+      //   rb.AddForce(Vector2.up * force);
+      // }
+      // if(direction == "Down")
+      // {
+      //   direction = null;
+      //   rb.AddForce(Vector2.down * force);
+      // }
 
     }
 
     private void SwipeDetector_OnSwipe(SwipeData data)
     {
-      direction = data.Direction.ToString() ;
+      direction = data.Direction.ToString();
+      direc2=data.EndPosition-data.StartPosition;
+
+
     }
 
     IEnumerator SlowCoroutine()

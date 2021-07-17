@@ -21,15 +21,15 @@ public class ColorController : MonoBehaviour
     private void Awake(){
       spriteRenderer=GetComponent<SpriteRenderer>();
       colors.Enqueue(Color.red);
-      colors.Enqueue(Color.yellow);
-      colors.Enqueue(Color.green);
+      colors.Enqueue(Color.magenta);
+      colors.Enqueue(Color.white);
     }
     private void Start(){
 
       StartCoroutine(ColorCoroutine());
     }
     private void Update(){
-      secondsToWait=1-(combo*0.1f);
+      secondsToWait=1-(combo*0.05f);
 
     }
     IEnumerator ColorCoroutine()
@@ -38,7 +38,7 @@ public class ColorController : MonoBehaviour
         Color temp = colors.Dequeue();
         colors.Enqueue(temp);
         spriteRenderer.color=temp;
-        
+
         yield return new WaitForSeconds(secondsToWait);
       }
 
