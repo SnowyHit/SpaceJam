@@ -7,7 +7,6 @@ using UnityEngine.Advertisements;
 public class BannerAd : MonoBehaviour , IUnityAdsInitializationListener
 {
       [SerializeField] string _androidGameId;
-      [SerializeField] string _iOsGameId;
       [SerializeField] bool _testMode = false;
       [SerializeField] bool _enablePerPlacementMode = true;
       private string _gameId;
@@ -38,8 +37,6 @@ public class BannerAd : MonoBehaviour , IUnityAdsInitializationListener
          [SerializeField] BannerPosition _bannerPosition = BannerPosition.BOTTOM_CENTER;
 
          [SerializeField] string _androidAdUnitId = "Banner_Android";
-         [SerializeField] string _iOsAdUnitId = "Banner_iOS";
-         string _adUnitId;
 
          void Start()
          {
@@ -51,7 +48,7 @@ public class BannerAd : MonoBehaviour , IUnityAdsInitializationListener
              };
 
              // Load the Ad Unit with banner content:
-             Advertisement.Banner.Load(_adUnitId, options);
+             Advertisement.Banner.Load(_androidAdUnitId, options);
          }
 
 
@@ -82,7 +79,8 @@ public class BannerAd : MonoBehaviour , IUnityAdsInitializationListener
              };
 
              // Show the loaded Banner Ad Unit:
-             Advertisement.Banner.Show(_adUnitId, options);
+             Advertisement.Banner.Show(_androidAdUnitId, options);
+             Debug.Log("Showiing Banner");
          }
 
 
