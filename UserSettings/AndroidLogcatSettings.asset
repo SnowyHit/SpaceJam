@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "WNPNU19430222514",
         "name": "com.SnowyHitDev.PopPlanet",
-        "processId": 22354,
+        "processId": 1404,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -18,6 +18,18 @@
             "deviceId": "WNPNU19430222514",
             "name": "com.SnowyHitDev.PopPlanet",
             "processId": 22354,
+            "exited": true
+        },
+        {
+            "deviceId": "WNPNU19430222514",
+            "name": "com.huawei.android.launcher",
+            "processId": 24953,
+            "exited": false
+        },
+        {
+            "deviceId": "WNPNU19430222514",
+            "name": "com.SnowyHitDev.PopPlanet",
+            "processId": 1404,
             "exited": false
         }
     ],

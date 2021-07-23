@@ -928,10 +928,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _androidGameId: 4221137
   _testMode: 0
-  _enablePerPlacementMode: 1
+  _enablePerPlacementMode: 0
   _bannerPosition: 4
   _androidAdUnitId: Banner_Android
-  _iOsAdUnitId: Banner_iOS
 --- !u!4 &1004076714
 Transform:
   m_ObjectHideFlags: 0

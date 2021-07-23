@@ -24,7 +24,14 @@ public class BannerAd : MonoBehaviour , IUnityAdsInitializationListener
 
       public void OnInitializationComplete()
       {
+          BannerLoadOptions options = new BannerLoadOptions
+          {
+              loadCallback = OnBannerLoaded,
+              errorCallback = OnBannerError
+          };
+
           Debug.Log("Unity Ads initialization complete.");
+           Advertisement.Banner.Load(_androidAdUnitId, options);
       }
 
       public void OnInitializationFailed(UnityAdsInitializationError error, string message)
@@ -41,14 +48,9 @@ public class BannerAd : MonoBehaviour , IUnityAdsInitializationListener
          void Start()
          {
              Advertisement.Banner.SetPosition(_bannerPosition);
-             BannerLoadOptions options = new BannerLoadOptions
-             {
-                 loadCallback = OnBannerLoaded,
-                 errorCallback = OnBannerError
-             };
 
              // Load the Ad Unit with banner content:
-             Advertisement.Banner.Load(_androidAdUnitId, options);
+
          }
 
 
@@ -70,17 +72,10 @@ public class BannerAd : MonoBehaviour , IUnityAdsInitializationListener
          // Implement a method to call when the Show Banner button is clicked:
          void ShowBannerAd()
          {
-             // Set up options to notify the SDK of show events:
-             BannerOptions options = new BannerOptions
-             {
-                 clickCallback = OnBannerClicked,
-                 hideCallback = OnBannerHidden,
-                 showCallback = OnBannerShown
-             };
 
              // Show the loaded Banner Ad Unit:
-             Advertisement.Banner.Show(_androidAdUnitId, options);
-             Debug.Log("Showiing Banner");
+             Advertisement.Banner.Show(_androidAdUnitId);
+             Debug.Log("Showing Banner");
          }
 
 
